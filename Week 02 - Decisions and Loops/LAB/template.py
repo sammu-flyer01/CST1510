@@ -19,23 +19,28 @@ Delete these instructions as you replace them with your code.
 #    - the second is a NUMBER (use float(), not int())
 #    - the third  is a NUMBER (use float(), not int())
 
-label = ""      # replace with an input() call
-value = 0.0     # replace with an input() call, converted with float()
-limit = 0.0     # replace with an input() call, converted with float()
+label = input("Enter label: ")    # replace with an input() call
+value = float(input("Enter value: "))     # replace with an input() call, converted with float()
+limit = float(input("Enter limit: "))     # replace with an input() call, converted with float()
 
 
 # ================================================================== PROCESS
 # 2. Work out the difference and the percentage.       [Typical and above]
 
-difference = 0.0   # replace with your calculation
-percent = 0.0       # replace with your calculation
+difference = limit - value  # replace with your calculation
+percent = (difference / limit) * 100     # replace with your calculation
 # 3. Decide a status and store it in a variable called status.
 #
 #    Threshold : if / else        -> "OVER LIMIT" or "OK"
 #    Typical   : if / elif / else -> "OVER LIMIT" (100% or more),
 #                                     "WARNING" (90% or more), otherwise "OK"
 
-status = ""   # replace with your if / else (or if / elif / else)
+if percent >= 100:
+    status = "OVER LIMIT"
+elif percent >= 90:
+    status = "WARNING"
+else:
+    status = "OK"
 
 
 # =================================================================== OUTPUT
@@ -48,12 +53,17 @@ status = ""   # replace with your if / else (or if / elif / else)
 #                Keep count of how many came back OVER LIMIT and print that
 #                once, after the loop ends.
 
-print()
 print("=" * 34)
 print(f"  RECORD CHECK  -  {label}")
 print("=" * 34)
 
+print(f" {"Used:":<10} {value:>10.2f}")
+print(f" {"Total:":<10} {limit:>10.2f}")
+
 # your report lines go here
+print(f" {"Free:":<10} {difference:>10.2f}")
+print(f" {"Percent:":<10} {percent:>10.2f}%")
+print(f" {"Status:":<10} {status:>10}")
 
 print("=" * 34)
 

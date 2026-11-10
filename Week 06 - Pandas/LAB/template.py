@@ -12,14 +12,12 @@ Work through the numbered sections in order. Each one tells you what it must do.
 Delete these instructions as you replace them with your code.
 """
 
-import pandas as pd
-
 # ==================================================================== LOAD
 # 1. Read your data file with pd.read_csv(). Make your own CSV, header row
 #    plus at least 5 data rows: label,value,limit (or your lane's own field
 #    names - same shape, different words).
 
-df = None   # replace with pd.read_csv("your_file.csv")
+df = pd.read_csv(r"C:\Users\HP\Documents\CST1510\Week 06 - Pandas\LAB\records_sample.csv")   # replace with pd.read_csv("your_file.csv")
 
 
 # ================================================================= PROCESS
@@ -29,7 +27,8 @@ df = None   # replace with pd.read_csv("your_file.csv")
 #    lambda - "OVER LIMIT" (100%+), "WARNING" (90%+), otherwise "OK".
 
 # your column(s) go here
-
+df["percent"] = (df["value"] / df["limit"]) * 100
+df["status"] = df["percent"].apply(lambda p: "OVER LIMIT" if p >= 100 else ("WARNING" if p >= 90 else "OK"))
 
 # ================================================================== OUTPUT
 # 3. Print the DataFrame.
@@ -42,7 +41,8 @@ df = None   # replace with pd.read_csv("your_file.csv")
 #                one bar chart of the counts per status.
 
 print(df)
-
+filter_df = df[df["status"] != "OK"]
+print(filter_df)
 
 # ==========================================================================
 # 4. Before you finish:
